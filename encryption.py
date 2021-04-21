@@ -1,4 +1,4 @@
-import random, sympy, string, math
+import random, sympy, math
 
 def encrypt(alpha):
     rand = random.randint(20,30)
@@ -19,15 +19,34 @@ def encrypt(alpha):
 
     #print('n, phi, e', n, phi, e) #n and e are public keys
 
+    #doing the actual encryption of each letter using ascii value, e, and n values
     concatNum = []
     for i in alpha:
         value = ord(i)
         value = value**e
         c = value%n
-        concatNum.append(c)
+        app = str(c).zfill(3) #filling each number with leading 0's
+        concatNum.append(app) #each value is string of length 3
+
+
     #print(concatNum)
 
-    return [n, e, concatNum]
+
+    #combining 2 letters at a time = each value in finalConcat is a string of length 6
+    finalConcat = []
+    j = 0
+    while j < len(concatNum):
+        if j+1 < len(concatNum):
+            finalConcat.append(concatNum[j]+concatNum[j+1])
+
+        j+=2
+        
+    if len(concatNum) % 2 != 0:
+        app2 = concatNum[len(concatNum)-1]+'000'
+        finalConcat.append(app2)
+        
+    #print(finalConcat)
+    return [n, e, finalConcat]
     
 
 def main():
