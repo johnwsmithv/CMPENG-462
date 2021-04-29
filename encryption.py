@@ -3,10 +3,12 @@ import random, sympy, math
 #function for determining public keys
 def getPublicK(alpha):
     rand = random.randint(20,30)
-    p = sympy.prevprime(rand)
-    q = sympy.nextprime(rand)
+    p = 31
+    q = 41
+    #p = sympy.prevprime(rand)
+    #q = sympy.nextprime(rand)
 
-    n = p*q
+    n = p*q #n = 1271
     phi = (p-1)*(q-1)
 
     e = 2
@@ -17,7 +19,7 @@ def getPublicK(alpha):
             e+=1
 
     #print('n, phi, e', n, phi, e) #n and e are public keys
-    return [n, e]
+    return [n, 11]
     
 def encrypt(alpha):
     n, e = getPublicK(alpha) #getting public keys
@@ -26,9 +28,11 @@ def encrypt(alpha):
     concatNum = []
     for i in alpha:
         value = ord(i)
+        #print(value)
         value = value**e
         c = value%n
-        app = str(c).zfill(3) #filling each number with leading 0's
+        #print(c)
+        app = str(c).zfill(4) #filling each number with leading 0's
         concatNum.append(app) #each value is string of length 3
 
 
@@ -52,7 +56,8 @@ def encrypt(alpha):
     
 
 def main():
-    alpha = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed nulla orci. Donec dignissim magna bibendum libero viverra, in facilisis eros luctus. Vestibulum pulvinar augue et elementum sollicitudin. Mauris cursus feugiat varius. Proin tincidunt ligula nec elit semper, in maximus est semper. Sed commodo mauris ante, et fringilla est pellentesque ut. Vivamus quis dapibus eros. Cras luctus ultricies ipsum, semper pharetra arcu accumsan in. Donec a dui nisl. Donec posuere mauris nulla, vitae blandit arcu vestibulum ut." #input
+    #input
+    alpha = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non massa nulla. Donec at odio tortor. Curabitur porta, nisl id imperdiet sollicitudin, lectus ante consectetur magna, nec facilisis magna magna quis sapien. Integer faucibus, nulla quis sagittis bibendum, erat dui condimentum magna, et congue eros sapien vitae lectus. Phasellus non sapien sed justo consectetur sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac habitasse platea dictumst. Curabitur dignissim accumsan aliquet. Nunc malesuada erat a erat venenatis venenatis. Aliquam et quam malesuada, vulputate sapien in, tristique lorem. Proin imperdiet sodales consectetur."
     #alpha = input("Enter message: ")
 
     print(encrypt(alpha)) #gives [n, e, [ciphertext numbers]]
