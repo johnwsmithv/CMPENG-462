@@ -9,7 +9,7 @@ print ("Socket listening on " + str(port))
 while True: 
   
     c, addr = s.accept()     
-    print ("Gor request from: ", addr )
+    print ("Got request from: ", addr )
     
     c.send(b'Secret Message') 
     print("Message Sent")
