@@ -3,10 +3,10 @@ import random, sympy, math
 #function for determining public keys
 def getPublicK(alpha):
     rand = random.randint(20,30)
-    #p = 31
-    #q = 41
-    p = sympy.prevprime(rand)
-    q = sympy.nextprime(rand)
+    p = 31
+    q = 41
+    #p = sympy.prevprime(rand)
+    #q = sympy.nextprime(rand)
 
     n = p*q #n = 1271
     phi = (p-1)*(q-1)
