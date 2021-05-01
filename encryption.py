@@ -3,10 +3,10 @@ import random, sympy, math
 #function for determining public keys
 def getPublicK(alpha):
     rand = random.randint(20,30)
-    p = 31
-    q = 41
-    #p = sympy.prevprime(rand)
-    #q = sympy.nextprime(rand)
+    #p = 31
+    #q = 41
+    p = sympy.prevprime(rand)
+    q = sympy.nextprime(rand)
 
     n = p*q #n = 1271
     phi = (p-1)*(q-1)
@@ -19,7 +19,7 @@ def getPublicK(alpha):
             e+=1
 
     #print('n, phi, e', n, phi, e) #n and e are public keys
-    return [n, 11]
+    return [n, e]
     
 def encrypt(alpha):
     n, e = getPublicK(alpha) #getting public keys
@@ -48,7 +48,7 @@ def encrypt(alpha):
         j+=2
         
     if len(concatNum) % 2 != 0:
-        app2 = concatNum[len(concatNum)-1]+'000'
+        app2 = concatNum[len(concatNum)-1]+'0000'
         finalConcat.append(app2)
         
     #print(finalConcat)
