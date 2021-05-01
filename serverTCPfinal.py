@@ -8,7 +8,7 @@ s.bind(('', port))
 s.listen(5)     
 print ("Socket listening on " + str(port))
 
-message = 'The CMPEN362 Project was fun.'
+message = 'The CMPEN462 Project was fun.'
 encrypted = ''.join(encrypt(message)[2]).encode()
 message = message.encode()
 
